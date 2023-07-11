@@ -127,7 +127,7 @@ const BeSquareBanner = () => {
                 <LeftWrapper>
                     <LeftChild>
                         <StyledHeader as="h3" type="section-title">
-                            Join the Deriv graduate programmesss
+                            Join the Deriv graduate programmess
                         </StyledHeader>
                         <StyledText>
                             Are you a go-getter who loves learning and taking on new challenges?
