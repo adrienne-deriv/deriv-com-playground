@@ -53,7 +53,7 @@ jobs:
               uses: actions/github-script@v3
               with:
                   script: |
-                      const preview_url = ${{ steps.publish_to_pages.outputs.preview_url }} 
+                      const preview_url = '${{ steps.publish_to_pages.outputs.preview_url }}'
 
                       const comment = [
                         '| Name | Result |',
