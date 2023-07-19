@@ -124,7 +124,7 @@ import { Text } from 'components/elements'
 const YourComponent = () => {
     return (
         <Text mb="1rem" size="2rem">
-            {localize('Example')}
+            {localize('Exampleee')}
         </Text>
     )
 }
