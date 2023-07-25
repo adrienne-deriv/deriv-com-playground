@@ -16,6 +16,7 @@
         "@svgr/webpack": "^6.2.1",
         "@tanstack/react-table": "^8.8.5",
         "@vercel/gatsby-plugin-vercel-builder": "^0.1.2",
+        "chatgpt": "^5.2.5",
         "cli-select": "^1.1.2",
         "clsx": "^1.2.1",
         "commander": "^8.3.0",
