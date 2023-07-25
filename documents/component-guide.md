@@ -4,7 +4,7 @@ The main function of this document is to introduce some of the main `containers`
 
 ### SectionContainer
 
--   To be used on the creation of new sections on a page as it adds the `section` element tag and also allows for `padding`, `background-color` and `position` to be passed as props.
+-   To be used on the creation of new sections on a page as it adds the `section` element tag and also allows for `padding`, `background-color` and `position` to be passed as props.asd
 
 Usage example:
 
