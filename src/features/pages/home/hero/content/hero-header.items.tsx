@@ -28,9 +28,7 @@ const HeroHeaderItems = () => {
             </Flex.Box>
             <Box visible="phone-and-tablet">
                 <Typography.Heading as={'h1'} size={'large'} weight="normal">
-                    <Localize
-                        translate_text={'_t_One broker, countless trading opportunities_t_'}
-                    />
+                    <Localize translate_text={'_t_One broker, countless kurukuru_t_'} />
                 </Typography.Heading>
             </Box>
         </>
