@@ -21,17 +21,13 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v2
 
-            - name: Get .cache folder
+            - name: Get cached build output
               uses: actions/cache@v3
               with:
-                key: ${{ runner.os }}-cache-${{ env.cache-name }}
-                path: .cache
-                
-            - name: Get cached build
-              uses: actions/cache@v3
-              with:
-                  key: ${{ runner.os }}-public-${{ env.cache-name }}
-                  path: public
+                key: ${{ runner.os }}-cache-public
+                path: |
+                    .cache
+                    public
           
             - name: Get cached dependencies
               id: cache-npm
@@ -40,11 +36,8 @@ jobs:
                 cache-name: cache-node-modules
               with:
                 path: node_modules
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
+                key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+  
             - name: Install dependencies
               if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
               run: npm ci
@@ -57,19 +50,19 @@ jobs:
               run: |
                   echo "Installing Wrangler CLI"
                   npm i -g wrangler
+                  
                   echo "Deploying build to Cloudflare Pages"
                   directory='public'
                   projectName='deriv-com-playground'
                   branch=$GITHUB_HEAD_REF
                   preview_url=$(wrangler pages deploy $directory --project-name=$projectName --branch=$branch | grep -o 'https://[^\"]*.pages.dev')
-                  echo "Retrieving preview URL"
-                  echo "preview_url=$preview_url" >> "$GITHUB_OUTPUT"
+              
             - name: Retrieve Cloudflare Pages Preview URL
               id: vercel_preview_url
               uses: actions/github-script@v3
               with:
                   script: |
-                      const preview_url = '${{ steps.publish_to_pages.outputs.preview_url }}'
+                      const preview_url = "${{ format('{0}{1}', github.head_ref, '.deriv-com-playground.pages.dev') }}"
                       const comment = [
                         '| Name | Result |',
                         '| :--- | :------ |',
@@ -77,9 +70,11 @@ jobs:
                         ''
                       ].join('\n')
                       core.setOutput("comment", comment);
+                      
             - name: Post Cloudflare Pages Preview comment
               uses: marocchino/sticky-pull-request-comment@v2
               with:
                   header: Vercel Preview Comment
                   number: ${{github.event.issue.number}}
                   message: ${{steps.vercel_preview_url.outputs.comment}}
+
