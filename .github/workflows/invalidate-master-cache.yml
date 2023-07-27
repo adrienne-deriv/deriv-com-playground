@@ -6,7 +6,7 @@ on:
     push:
         branches:
             - 'master'
-            
+
 env:
     NODE_OPTIONS: '--max-old-space-size=8192'
 
@@ -47,17 +47,17 @@ jobs:
               if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
               uses: actions/cache/save@v3
               with:
-                  path: node_modules
                   key: master-npm-${{ hashFiles('**/package-lock.json') }}
+                  path: node_modules
 
             - name: Rebuild master cache
               run: npm run build
 
             - name: Save master cache
+              if: ${{ success() }}
               uses: actions/cache/save@v3
               with:
                   key: master-cache-public
                   path: |
-                    .cache
-                    public
-
+                      .cache
+                      public
