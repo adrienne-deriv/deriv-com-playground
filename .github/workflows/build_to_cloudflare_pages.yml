@@ -25,6 +25,29 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v2
 
+            - name: Generate build status comment
+              id: build_status_comment
+              uses: actions/github-script@v3
+              with:
+                  script: |
+                      const preview_url = "${{ github.head_ref }}" + ".deriv-com-playground.pages.dev"
+                      const comment = [
+                        '| Name | Result |',
+                        '| :--- | :------ |',
+                        `| **Build status**  | In progress ⏳ |`,
+                        `| **Preview URL**  | [Visit Preview](${preview_url}) |`,
+                        ''
+                      ].join('\n')
+                      core.setOutput("comment", comment);
+
+            - name: Update build status comment
+              uses: marocchino/sticky-pull-request-comment@v2
+              with:
+                  only_update: true
+                  header: Cloudflare Pages Preview Comment
+                  number: ${{github.event.issue.number}}
+                  message: ${{steps.build_status_comment.outputs.comment}}
+
             - name: Get build output from master cache
               uses: actions/cache/restore@v3
               with:
@@ -45,6 +68,7 @@ jobs:
               run: npm ci
 
             - name: Build project
+              id: build_project
               run: npm run build
 
             - name: Publish to Cloudflare Pages
@@ -60,15 +84,16 @@ jobs:
                   preview_url=$(wrangler pages deploy $directory --project-name=$projectName --branch=$branch | grep -o 'https://[^\"]*.pages.dev')
 
             - name: Retrieve Cloudflare Pages Preview URL
-              id: vercel_preview_url
+              id: cloudflare_pages_preview_url
               uses: actions/github-script@v3
               with:
                   script: |
-                      const preview_url = "${{ github.head_ref }}" + ".deriv-com-playground.pages.dev"
+                      const preview_url = "${{ github.ref_name }}" + ".deriv-com-playground.pages.dev"
                       const comment = [
                         '| Name | Result |',
                         '| :--- | :------ |',
-                        `| **Preview URL**  | [Visit Link](${preview_url}) |`,
+                        `| **Build status**  | Completed ✅ |`,
+                        `| **Preview URL**  | [Visit Preview](${preview_url}) |`,
                         ''
                       ].join('\n')
                       core.setOutput("comment", comment);
@@ -76,6 +101,6 @@ jobs:
             - name: Post Cloudflare Pages Preview comment
               uses: marocchino/sticky-pull-request-comment@v2
               with:
-                  header: Vercel Preview Comment
+                  header: Cloudflare Pages Preview Comment
                   number: ${{github.event.issue.number}}
-                  message: ${{steps.vercel_preview_url.outputs.comment}}
+                  message: ${{steps.cloudflare_pages_preview_url.outputs.comment}}
