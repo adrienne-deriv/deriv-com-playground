@@ -15,7 +15,7 @@ const TradeTypes = () => {
     const title_text: TString = useMemo(() => {
         return is_eu
             ? '_t_Trade the way you want with 2 flexible trade types._t_'
-            : '_t_Trade the way you want with 3 exciting trade types._t_'
+            : '_t_KURUKURU_t_'
     }, [is_eu])
 
     return (
