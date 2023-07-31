@@ -3,6 +3,9 @@ name: Invalidate master cache
 permissions: write-all
 
 on:
+#   schedule:
+#     - cron: '0 4 * * *'
+    workflow_dispatch:
     push:
         branches:
             - 'master'
@@ -54,7 +57,7 @@ jobs:
               run: npm run build
 
             - name: Save master cache
-              if: ${{ success() }}
+              if: ${{ always() }}
               uses: actions/cache/save@v3
               with:
                   key: master-cache-public

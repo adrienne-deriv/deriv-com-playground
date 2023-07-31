@@ -23,7 +23,7 @@ const HomeHeroContent = () => {
         <Flex.Box justify="start" direction="col" align="start" gap="4x" dir={get_lang_direction()}>
             <HeroHeaderItems />
             <Typography.Heading as="h2" size={'xs'} weight="normal" className={hero_content_title}>
-                <Localize translate_text="_t_Get the widest kurukuru range of markets, trades and platforms_t_" />
+                <Localize translate_text="_t_Get the widest kurukuru kururin! range of markets, trades and platforms_t_" />
             </Typography.Heading>
             <HeroFeaturesCarousel />
             <HeroCtaButton />
