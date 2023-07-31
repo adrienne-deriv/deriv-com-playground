@@ -11,9 +11,9 @@ const ForexPage = () => (
     <Layout type="noNav">
         <SEO
             description={localize(
-                "Trade forex on Deriv's intuitive online trading platforms and get access to a wide range of major, minor, and exotic currency pairs.",
-            )}
-            title={localize('Forex online trading platforms | Forex trading demo account | Deriv')}
+            //     "Trade forex on Deriv's intuitive online trading platforms and get access to a wide range of major, minor, and exotic currency pairs.",
+            // )}
+            // title={localize('Forex online trading platforms | Forex trading demo account | Deriv')}
         />
         <DerivedFXHero
             title="Forex"
