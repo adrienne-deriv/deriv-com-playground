@@ -38,6 +38,12 @@ module.exports = {
         //     },
         // },
         {
+            resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+            options: {
+                devMode: true,
+            },
+        },
+        {
             resolve: 'gatsby-plugin-sass',
             options: {
                 postCssPlugins: [
@@ -82,7 +88,7 @@ module.exports = {
                     // Configure cache options here
                     cacheFolder: '.cache/caches/gatsby-plugin-sharp',
                     maxMemory: 500000000,
-                  },
+                },
             },
         },
         `gatsby-plugin-image`,
@@ -362,7 +368,7 @@ module.exports = {
                             urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
                             handler: `StaleWhileRevalidate`,
                         },
-                    ]
+                    ],
                 },
             },
         },

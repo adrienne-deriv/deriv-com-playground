@@ -7,11 +7,10 @@ import { Header as HeaderText } from 'components/elements'
 import device from 'themes/device'
 import { Button } from 'components/form'
 import { Flex } from 'components/containers'
-import * as icons from 'components/elements/symbols'
 import useRegion from 'components/hooks/use-region'
 import dl from 'images/svg/trading-specification/dl.svg'
 import swf from 'images/svg/trading-specification/swf.svg'
-import { useBrowserResize } from 'components/hooks/use-browser-resize'
+import LazySymbol from 'components/elements/lazy-symbol'
 
 export const TableContainer = styled.div`
     display: grid;
@@ -262,7 +261,7 @@ export const TableCellGroup = ({ data, market }: TTableCellGroup) => {
     if (data !== undefined)
         return (
             <CellIcon>
-                {symbol && <img src={icons[symbol]} width="24px" height="24px" />}
+                {symbol && <LazySymbol name={symbol} />}
                 <StyledHeaderText type="small" align="start" as="p">
                     {text}
                 </StyledHeaderText>
