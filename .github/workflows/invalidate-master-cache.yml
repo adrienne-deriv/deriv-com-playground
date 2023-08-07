@@ -3,12 +3,9 @@ name: Invalidate master cache
 permissions: write-all
 
 on:
+    workflow_dispatch:
     schedule:
       - cron: '0 4 * * *'
-    workflow_dispatch:
-    push:
-        branches:
-            - 'master'
 
 env:
     NODE_OPTIONS: '--max-old-space-size=8192'
