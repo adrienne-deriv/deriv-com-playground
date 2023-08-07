@@ -104,7 +104,7 @@ jobs:
 
             # - name: Post Cloudflare Pages Preview comment
             #   uses: marocchino/sticky-pull-request-comment@v2
-              with:
-                  header: Cloudflare Pages Preview Comment
-                  number: ${{github.event.issue.number}}
-                  message: ${{steps.cloudflare_pages_preview_url.outputs.comment}}
+              # with:
+              #     header: Cloudflare Pages Preview Comment
+              #     number: ${{github.event.issue.number}}
+              #     message: ${{steps.cloudflare_pages_preview_url.outputs.comment}}
