@@ -83,7 +83,7 @@ jobs:
                   branch=$GITHUB_HEAD_REF
                   # preview_url=$(wrangler pages deploy "$directory" --project-name "$projectName" --branch "$branch" | grep -o 'https://[^\"]*.pages.dev')
 
-                  preview_url=$(wrangler pages deploy "$directory" --project-name "$projectName" --branch "$branch" > log.txt 2>&1; echo $?)
+                  preview_url=$(CLOUDFLARE_ACCOUNT_ID="${{ secrets.ACCOUNT_ID }}" CLOUDFLARE_API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}" wrangler pages deploy "$directory" --project-name "$projectName" --branch "$branch" > log.txt 2>&1; echo $?)
                   echo "------"
                   cat log.txt
 
