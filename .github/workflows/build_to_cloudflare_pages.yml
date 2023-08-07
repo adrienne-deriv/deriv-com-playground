@@ -94,7 +94,7 @@ jobs:
               uses: actions/github-script@v3
               with:
                   script: |
-                      const preview_url = "${{ github.ref_name }}" + ".deriv-com-playground.pages.dev"
+                      const preview_url = "${{ github.head_ref }}" + ".deriv-com-playground.pages.dev"
                       const comment = [
                         '| Name | Result |',
                         '| :--- | :------ |',
