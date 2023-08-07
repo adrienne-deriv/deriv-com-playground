@@ -3,8 +3,8 @@ name: Invalidate master cache
 permissions: write-all
 
 on:
-#   schedule:
-#     - cron: '0 4 * * *'
+  schedule:
+    - cron: '0 4 * * *'
     workflow_dispatch:
     push:
         branches:
