@@ -87,7 +87,6 @@ jobs:
                   echo "------"
                   cat log.txt
 
-
             # - name: Retrieve Cloudflare Pages Preview URL
             #   id: cloudflare_pages_preview_url
             #   uses: actions/github-script@v3
