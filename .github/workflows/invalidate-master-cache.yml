@@ -3,12 +3,9 @@ name: Invalidate master cache
 permissions: write-all
 
 on:
-#   schedule:
-#     - cron: '0 4 * * *'
     workflow_dispatch:
-    push:
-        branches:
-            - 'master'
+    schedule:
+      - cron: '0 4 * * *'
 
 env:
     NODE_OPTIONS: '--max-old-space-size=8192'
@@ -35,12 +32,17 @@ jobs:
                       .cache
                       public
 
+            - name: Get dependencies key
+              id: dependency_key
+              run: |
+                  echo "dependency_key=npm-${{ hashFiles('**/package-lock.json') }}" > "$GITHUB_OUTPUT"
+    
             - name: Get cached dependencies
               id: cache-npm
               uses: actions/cache/restore@v3
               with:
                   path: node_modules
-                  key: master-npm-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ steps.dependency_key.outputs.dependency_key }}
 
             - name: Install dependencies
               if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
@@ -50,7 +52,7 @@ jobs:
               if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
               uses: actions/cache/save@v3
               with:
-                  key: master-npm-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ steps.dependency_key.outputs.dependency_key }}
                   path: node_modules
 
             - name: Rebuild master cache
