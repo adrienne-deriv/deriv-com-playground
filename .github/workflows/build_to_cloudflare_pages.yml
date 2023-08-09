@@ -54,8 +54,8 @@ jobs:
               uses: actions/cache/restore@v3
               with:
                   key: master-cache-public
-                  restore-keys: |
-                      master-cache-public-replica
+                  # restore-keys: |
+                  #     master-cache-public-replica
                   path: |
                       .cache
                       public

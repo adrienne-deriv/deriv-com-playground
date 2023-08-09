@@ -6,9 +6,6 @@ on:
     schedule:
       - cron: '0 4 * * *'
     workflow_dispatch:
-    push:
-        branches:
-            - 'master'
 
 env:
     NODE_OPTIONS: '--max-old-space-size=8192'
@@ -28,6 +25,7 @@ jobs:
               uses: actions/setup-node@v2
 
             - name: Get master cache
+              id: restore_master_cache
               uses: actions/cache/restore@v3
               with:
                   key: master-cache-public
@@ -59,13 +57,35 @@ jobs:
                   path: node_modules
 
             - name: Rebuild master cache
+              id: build_cache
               run: npm run build
 
             - name: Save master cache
-              if: ${{ always() }}
+              if: ${{ always() && steps.build_cache.outcome == 'success' }}
               uses: actions/cache/save@v3
               with:
                   key: master-cache-public
                   path: |
                       .cache
                       public
+
+            # - name: Backup master cache
+            #   if: ${{ always() && steps.build_cache.outcome == 'success' }}
+            #   uses: actions/cache/save@v3
+            #   with:
+            #       key: master-cache-public-replica
+            #       path: |
+            #           .cache
+            #           public
+                      
+            # - name: Clear master cache on build failure
+            #   if: ${{ (failure() || cancelled()) && steps.restore_master_cache.outputs.cache-hit == 'true' }}
+            #   run: |
+            #       owner="adrienne-deriv"
+            #       repo="deriv-com-playground"
+            #       cache_key="${{ steps.restore_master_cache.outputs.cache-matched-key }}"
+            #       curl \
+            #         -X DELETE \
+            #         -H "Accept: application/vnd.github.v3+json" \
+            #         -H "Authorization: token ${{ github.token }}" \
+            #         https://api.github.com/repos/$owner/$repo/actions/caches?key=$cache_key

@@ -30,10 +30,10 @@ const HomePage = () => {
                     '_t_Deriv: an online trading platform available 24/7 with a wide selection of derivatives._t_',
                 )}
                 has_organization_schema
-            />
+            
             <MainNav />
             <HomeHero />
-            <LivePricing />
+            <LivePricdasding />
             <TradeTypes />
             <OurPlatforms />
             <ClientTestimonial />
