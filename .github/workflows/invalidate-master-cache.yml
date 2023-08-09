@@ -4,7 +4,7 @@ permissions: write-all
 
 on:
     schedule:
-        - cron: '0 4 * * *'
+      - cron: '0 4 * * *'
     workflow_dispatch:
 
 env:
@@ -37,7 +37,7 @@ jobs:
               id: dependency_key
               run: |
                   echo "dependency_key=npm-${{ hashFiles('**/package-lock.json') }}" > "$GITHUB_OUTPUT"
-
+    
             - name: Get cached dependencies
               id: cache-npm
               uses: actions/cache/restore@v3
@@ -77,7 +77,7 @@ jobs:
             #       path: |
             #           .cache
             #           public
-
+                      
             # - name: Clear master cache on build failure
             #   if: ${{ (failure() || cancelled()) && steps.restore_master_cache.outputs.cache-hit == 'true' }}
             #   run: |
