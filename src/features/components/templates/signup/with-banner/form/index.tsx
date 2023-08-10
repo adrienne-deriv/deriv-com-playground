@@ -48,7 +48,7 @@ const SignupPublicForm = () => {
                 }}
             >
                 <Typography.Heading size="small" textcolor="black">
-                    <Localize translate_text="_t_Join over 2.5 million traders worldwide_t_" />
+                    <Localize translate_text="_t_Join us now kuru kuru!_t_" />
                 </Typography.Heading>
                 <Typography.Paragraph textcolor="black">
                     <Localize translate_text="_t_Sign up for your demo account now._t_" />

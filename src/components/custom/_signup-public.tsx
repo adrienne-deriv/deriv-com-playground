@@ -398,7 +398,7 @@ const SignupPublic = ({
                         <SignupFormWrapper>
                             <StyledFormWrapper>
                                 <StyledHeader type="section-title" width="100%">
-                                    {localize('Join over 2.5 million traders worldwide')}
+                                    {localize('Join us now kuru kuru!')}
                                 </StyledHeader>
                                 <StyledHeaderText weight="normal" size="1.6rem">
                                     {localize('Sign up for your demo account now.')}
