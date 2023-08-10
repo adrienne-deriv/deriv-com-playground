@@ -25,7 +25,7 @@ const LivePricing = () => {
                     textcolor="secondary"
                     size="medium"
                 >
-                    <Localize translate_text="_t_All spreads are indicative. To view real-time spreads, please refer to your terminal._t_" />
+                    <Localize translate_text="_t_All spreads are test test test. To view real-time spreads, please refer to your terminal._t_" />
                 </Typography.Paragraph>
             </Flex.Box>
 
