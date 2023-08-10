@@ -16,7 +16,7 @@ export type THomeHeroImage = {
 }
 
 export const header_items: THeaderItem[] = [
-    { id: 0, text: '_t_One broker,_t_' },
-    { id: 1, text: '_t_countless trading_t_' },
+    { id: 0, text: '_t_Test for master,_t_' },
+    { id: 1, text: '_t_countless trading test test_t_' },
     { id: 2, text: '_t_opportunities test test test_t_' },
 ]
