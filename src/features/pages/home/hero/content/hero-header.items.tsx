@@ -21,7 +21,7 @@ const HeroHeaderItems = () => {
                 visible={'larger-than-tablet'}
             >
                 {header_items.map((item) => (
-                    <Typography.Heading key={item.id} as={'h1'} size={'medium'} weight="normal">
+                    <Typography.Heading key={item.id} as={'h2'} size={'medium'} weight="normal">
                         <Localize translate_text={item.text} />
                     </Typography.Heading>
                 ))}
