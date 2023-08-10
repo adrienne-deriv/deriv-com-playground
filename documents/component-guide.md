@@ -22,7 +22,7 @@ const YourSection = () => {
 
 ### Box
 
--   To be used as a container for injecting most of the required styling attributes such a `max-width`, `width`, `min-height`, `height`, `margin`, `padding`, `background`, `mediaqueries` as props.
+-   To be used as a conasdasdasdtainer for injecting most of the required styling attributes such a `max-width`, `width`, `min-height`, `height`, `margin`, `padding`, `background`, `mediaqueries` as props.
 -   `margin` and `padding` accept short syntaxes, please refer to [function.js](https://github.com/binary-com/deriv-com/blob/master/src/themes/function.js) for further clarification.
 
 Usage example:
