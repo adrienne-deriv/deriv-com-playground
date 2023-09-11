@@ -1,4 +1,4 @@
-name: Pre-build to Cloudflare Pages
+name: Pre-generate preview link
 
 permissions:
     actions: write
