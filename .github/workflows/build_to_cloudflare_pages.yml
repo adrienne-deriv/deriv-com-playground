@@ -32,7 +32,7 @@ jobs:
               uses: actions/github-script@v3
               with:
                   script: |
-                      const preview_url = "${{ github.head_ref }}" + ".deriv-com-playground.pages.dev"
+                      const preview_url = "${{ github.head_ref }}" + ".deriv-com-preview-links.pages.dev"
                       const comment = [
                         '## Cloudflare Pages Preview link',
                         '| Name | Result |',
@@ -84,7 +84,7 @@ jobs:
 
                   echo "Deploying build to Cloudflare Pages"
                   directory='public'
-                  projectName='deriv-com-playground'
+                  projectName='deriv-com-preview-links'
                   branch=$GITHUB_HEAD_REF
 
                   preview_url=$(wrangler pages deploy $directory --project-name=$projectName --branch=$branch > log.txt 2>&1; echo $?)
