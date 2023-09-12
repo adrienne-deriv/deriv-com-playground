@@ -39,7 +39,7 @@ jobs:
                       -H "Authorization: Bearer ${{ github.token }}" \
                       -H "X-GitHub-Api-Version: 2022-11-28" \
                       "https://api.github.com/repos/adrienne-deriv/deriv-com-playground/issues/${{github.event.pull_request.number}}/comments" \
-                      -d '{"body": "$branchName" }'
+                      -d '{"body": $branchName }'
 
             # - name: Update build status comment
             #   uses: marocchino/sticky-pull-request-comment@v2
