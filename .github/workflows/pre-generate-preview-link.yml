@@ -1,5 +1,8 @@
 name: Pre-generate preview link
 
+permissions:
+    pull-requests: write
+
 on:
     pull_request:
         types: [opened, synchronize]
@@ -12,11 +15,15 @@ jobs:
     verify_pull_request:
         runs-on: Ubuntu-latest
         steps:
-          - name: Save PR number
-            run: |
-              mkdir -p ./pr
-              echo ${{ github.event.number }} > ./pr/NR
-          - uses: actions/upload-artifact@v2
-            with:
-              name: "pr-${{github.run_id}}"
-              path: pr/
+            - name: Retrieve PR information
+              run: |
+                  mkdir -p ./pr
+                  echo ${{ github.event.number }} > ./pr/NR
+                  echo ${{ github.head_ref }} > ./pr/HEAD_BRANCH
+                  echo ${{ github.event.pull_request.head.sha }} > ./pr/HEAD_SHA
+
+            - name: Upload PR information to artifact
+              uses: actions/upload-artifact@v2
+              with:
+                  name: 'pr-${{github.run_id}}'
+                  path: pr/
