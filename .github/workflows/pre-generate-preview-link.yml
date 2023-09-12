@@ -19,8 +19,6 @@ jobs:
               run: |
                   mkdir -p ./pr
                   echo ${{ github.event.number }} > ./pr/NR
-                  echo ${{ github.head_ref }} > ./pr/HEAD_BRANCH
-                  echo ${{ github.event.pull_request.head.sha }} > ./pr/HEAD_SHA
 
             - name: Upload PR information to artifact
               uses: actions/upload-artifact@v2
