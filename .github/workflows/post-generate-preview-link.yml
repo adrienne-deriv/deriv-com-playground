@@ -1,53 +1,53 @@
-name: Post-generate preview link
+# name: Post-generate preview link
 
-on:
-    pull_request:
-        types: [opened, synchronize]
+# on:
+#     pull_request:
+#         types: [opened, synchronize]
 
-jobs:
-    wait_for_build:
-        name: Wait for generated preview link
-        runs-on: ubuntu-latest
-        steps:
-            - name: Wait for pre-generate preview link checks to complete
-              run: |
-                  sleep 20
+# jobs:
+#     wait_for_build:
+#         name: Wait for generated preview link
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Wait for pre-generate preview link checks to complete
+#               run: |
+#                   sleep 20
 
-            - name: 'Download artifact'
-              uses: actions/github-script@v3.1.0
-              with:
-                script: |
-                  var run_id = Number(fs.readFileSync('./WORKFLOW_ID'))
-                  var artifacts = await github.actions.listWorkflowRunArtifacts({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    run_id: run_id,
-                  });
-                  var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
-                    return artifact.name == `pr-${{ run_id }}`
-                  })[0];
-                  var download = await github.actions.downloadArtifact({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    artifact_id: matchArtifact.id,
-                    archive_format: 'zip',
-                  });
-                  var fs = require('fs');
-                  fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
+#             - name: 'Download artifact'
+#               uses: actions/github-script@v3.1.0
+#               with:
+#                 script: |
+#                   var run_id = Number(fs.readFileSync('./WORKFLOW_ID'))
+#                   var artifacts = await github.actions.listWorkflowRunArtifacts({
+#                     owner: context.repo.owner,
+#                     repo: context.repo.repo,
+#                     run_id: run_id,
+#                   });
+#                   var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+#                     return artifact.name == `pr-${{ run_id }}`
+#                   })[0];
+#                   var download = await github.actions.downloadArtifact({
+#                     owner: context.repo.owner,
+#                     repo: context.repo.repo,
+#                     artifact_id: matchArtifact.id,
+#                     archive_format: 'zip',
+#                   });
+#                   var fs = require('fs');
+#                   fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
 
-            - name: Retrieve PR infomation
-              id: pr_info
-              run: |
-                  unzip pr.zip
-                  head_sha=$(cat ./HEAD_SHA)
+#             - name: Retrieve PR infomation
+#               id: pr_info
+#               run: |
+#                   unzip pr.zip
+#                   head_sha=$(cat ./HEAD_SHA)
 
-                  echo "head_sha=$head_sha" > $GITHUB_OUTPUT
+#                   echo "head_sha=$head_sha" > $GITHUB_OUTPUT
 
-            - name: Wait for build to be uploaded to Cloudflare Pages
-              uses: lewagon/wait-on-check-action@v1.3.1
-              with:
-                  ref: ${{ steps.pr_info.outputs.head_sha }}
-                  check-name: 'build_to_cloudflare_pages'
-                  repo-token: ${{ github.token }}
-                  wait-interval: 20
-                  allowed-conclusions: success
+#             - name: Wait for build to be uploaded to Cloudflare Pages
+#               uses: lewagon/wait-on-check-action@v1.3.1
+#               with:
+#                   ref: ${{ steps.pr_info.outputs.head_sha }}
+#                   check-name: 'build_to_cloudflare_pages'
+#                   repo-token: ${{ github.token }}
+#                   wait-interval: 20
+#                   allowed-conclusions: success
