@@ -13,7 +13,7 @@ jobs:
               uses: lewagon/wait-on-check-action@v1.3.1
               with:
                   ref: ${{ github.event.pull_request.base.sha }}
-                  check-name: 'Pre-generate preview link'
+                  check-name: 'verify_pull_request'
                   repo-token: ${{ github.token }}
                   wait-interval: 20
                   allowed-conclusions: success
@@ -51,7 +51,7 @@ jobs:
               uses: lewagon/wait-on-check-action@v1.3.1
               with:
                   ref: ${{ steps.pr_info.outputs.head_sha }}
-                  check-name: 'Generate preview link'
+                  check-name: 'build_to_cloudflare_pages'
                   repo-token: ${{ github.token }}
                   wait-interval: 20
                   allowed-conclusions: success
