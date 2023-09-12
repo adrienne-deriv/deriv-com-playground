@@ -28,7 +28,7 @@ const HeroHeaderItems = () => {
             </Flex.Box>
             <Box visible="phone-and-tablet">
                 <Typography.Heading as={'h1'} size={'large'} weight="normal">
-                    <Localize translate_text={'_t_Test on forked branch, countless kurukuru_t_'} />
+                    <Localize translate_text={'_t_Test on forked brancheeee, countless kurukuru_t_'} />
                 </Typography.Heading>
             </Box>
         </>
