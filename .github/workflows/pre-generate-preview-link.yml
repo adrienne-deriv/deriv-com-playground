@@ -15,20 +15,32 @@ jobs:
     verify_pull_request:
         runs-on: Ubuntu-latest
         steps:
-            - name: Post preview link
-              run: |
-                  branchName=$(echo ${{ github.head_ref }} | sed 's/[\/_]/-/g')
-                  curl -L \
-                      -X POST \
-                      -H "Accept: application/vnd.github+json" \
-                      -H "Authorization: Bearer ${{ github.token }}" \
-                      -H "X-GitHub-Api-Version: 2022-11-28" \
-                      "https://api.github.com/repos/adrienne-deriv/deriv-com-playground/issues/${{github.event.pull_request.number}}/comments" \
-                      -d "{\"body\": \"https://$branchName.deriv-com-test-links.pages.dev\" }"
+          - name: PR Comment
+            uses: actions/github-script@v2
+            with:
+              github-token: ${{secrets.GITHUB_TOKEN}}
+              script: |
+                github.issues.createComment({
+                  issue_number: ${{ github.event.number }},
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: 'Test'
+                })
+                
+            # - name: Post preview link
+            #   run: |
+            #       branchName=$(echo ${{ github.head_ref }} | sed 's/[\/_]/-/g')
+            #       curl -L \
+            #           -X POST \
+            #           -H "Accept: application/vnd.github+json" \
+            #           -H "Authorization: Bearer ${{ github.token }}" \
+            #           -H "X-GitHub-Api-Version: 2022-11-28" \
+            #           "https://api.github.com/repos/adrienne-deriv/deriv-com-playground/issues/${{github.event.pull_request.number}}/comments" \
+            #           -d "{\"body\": \"https://$branchName.deriv-com-test-links.pages.dev\" }"
 
-            # - name: Update build status comment
-            #   uses: marocchino/sticky-pull-request-comment@v2
-            #   with:
-            #       header: Cloudflare Pages Preview Comment
-            #       number: ${{github.event.issue.number}}
-            #       message: ${{steps.build_status_comment.outputs.comment}}
+            # # - name: Update build status comment
+            # #   uses: marocchino/sticky-pull-request-comment@v2
+            # #   with:
+            # #       header: Cloudflare Pages Preview Comment
+            # #       number: ${{github.event.issue.number}}
+            # #       message: ${{steps.build_status_comment.outputs.comment}}
