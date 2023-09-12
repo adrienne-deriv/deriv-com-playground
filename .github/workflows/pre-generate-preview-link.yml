@@ -32,7 +32,7 @@ jobs:
                       core.setOutput("comment", comment);
             - name: Post preview link
               run: |
-                  issue_no=${{github.event.issue.number}
+                  issue_no=${{github.event.issue.number}}
                   curl -L \
                       -X POST \
                       -H "Accept: application/vnd.github+json" \
