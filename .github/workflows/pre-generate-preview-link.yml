@@ -19,6 +19,7 @@ jobs:
               run: |
                   mkdir -p ./pr
                   echo ${{ github.event.number }} > ./pr/NR
+                  echo ${{ github.run_id }} > ./pr/WORKFLOW_ID
                   echo ${{ github.event.pull_request.base.sha }} > ./pr/HEAD_SHA
 
             - name: Upload PR information to artifact
