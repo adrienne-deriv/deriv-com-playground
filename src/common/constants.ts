@@ -9,7 +9,7 @@ export const deriv_com_app_id = 16929
 export const deriv_me_app_id = 1411
 export const deriv_be_app_id = 30767
 
-export const lol = 'ldddasdl'
+export const lol = 'ldddsdl'
 
 const domain_url_pair = {
     [deriv_com_url]: deriv_com_url,
