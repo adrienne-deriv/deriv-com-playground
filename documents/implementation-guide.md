@@ -6,7 +6,7 @@
 -   [Image Component](#image-component)asdasdasdasd
 -   [Translation / Localization](#translation-/-localization)
 -   [Mobile responsive](#mobile-responsive)asdasdasd
--   [CSS responsive function](#css-responsive-function)
+-   [CSS responsive function](#css-responsive-function)asdasd
 -   [Create new page](#create-new-page)asdasdasd
 asdasd
 ## Styled Component
