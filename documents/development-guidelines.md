@@ -2,7 +2,7 @@
 
 ## Do:
 
--   Keep all files immediately relevant to a component inside the given component directory.
+-   Keep all files immediately relevant to a component inside the given coxmponent directory.
 -   Make it dead simple to import the coasdasdmponent from elsewhere.d
 -   Feel free to create sub-directories for relevant utils or helpersd
     if it helps to keep things tidy
