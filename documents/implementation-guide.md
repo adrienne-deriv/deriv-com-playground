@@ -12,7 +12,7 @@
 ## Styled Component
 
 To use a styled component you can follow this step:asdasdasdasdasd
-asdasdasd
+asdasdasdasdasdasd
 1. Import it
 
 ```js
