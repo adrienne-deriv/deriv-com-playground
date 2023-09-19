@@ -18,7 +18,7 @@ jobs:
             - name: Retrieve assignee information
               id: is_organization_member
               run: |
-                  response=$(curl -L -w "%{http_code}" -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.LIST_ORGS_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/orgs/binary-com/memberships/${{ github.event.pull_request.user.login }}")
+                  response=$(curl -L -w "%{http_code}" -o /dev/null -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.LIST_ORGS_TOKEN }}" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/orgs/binary-com/memberships/${{ github.event.pull_request.user.login }}")
 
                   echo "[ HERE ] $response"
                   if [ $response != "200" ]; then
