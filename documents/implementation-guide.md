@@ -25,7 +25,7 @@ import styled from 'styled-components'
 const _component_name_ = styled._any_html_tag`
     _your_css_style_ (for e.g.)
     color: var(--color-red);
-    margin: 1rem 0.4rem;
+    margin: 1rem 0.4rem;asdasd
     background-color: ${props => props.is_testing ? var(--color-white) : var(--color-black)}
 
     &:hover {
