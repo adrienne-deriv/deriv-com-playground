@@ -19,6 +19,7 @@ jobs:
               id: is_organization_member
               run: |
                   curl -L \
+                  -w "%{http_code}" \
                   -H "Accept: application/vnd.github+json" \
                   -H "Authorization: Bearer ${{ secrets.LIST_ORGS_TOKEN }}" \
                   -H "X-GitHub-Api-Version: 2022-11-28" \
