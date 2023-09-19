@@ -18,7 +18,7 @@ jobs:
             - name: Retrieve assignee information
               id: is_organization_member
               run: |
-                  curl -L \
+                  curl -L -s \
                   -w "%{http_code}" \
                   -H "Accept: application/vnd.github+json" \
                   -H "Authorization: Bearer ${{ secrets.LIST_ORGS_TOKEN }}" \
