@@ -7,7 +7,7 @@
 -   [Translation / Localization](#translation-/-localization)
 -   [Mobile responsive](#mobile-responsive)asdasdasd
 -   [CSS responsive function](#css-responsive-function)
--   [Create new page](#create-new-page)
+-   [Create new page](#create-new-page)asdasd
 
 ## Styled Component
 asdasdsad
