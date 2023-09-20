@@ -10,7 +10,7 @@
 -   [Create new page](#create-new-page)asdasdasd
 asdasd
 ## Styled Component
-asdasdsad
+asdasdsadasd
 To use a styled component you can follow this step:asdasdasdasdasd
 asdasdasdasdasdasdasd
 1. Import it
