@@ -13,7 +13,7 @@ asdasd
 asdasdsadasd
 To use a styled component you can follow this step:asdasdasdasdasd
 asdasdasdasdasdasdasd
-1. Import it
+1. Import itasd
 
 ```js
 import styled from 'styled-components'
