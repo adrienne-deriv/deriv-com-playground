@@ -16,7 +16,6 @@ jobs:
         runs-on: Ubuntu-latest
         steps:
             - name: Retrieve PR information
-              if: steps.is_organization_member.outputs.result == true
               run: |
                   mkdir -p ./pr
                   echo ${{ github.event.number }} > ./pr/NR
@@ -24,7 +23,6 @@ jobs:
                   echo ${{ github.event.pull_request.base.sha }} > ./pr/HEAD_SHA
 
             - name: Upload PR information to artifact
-              if: steps.is_organization_member.outputs.result == true
               uses: actions/upload-artifact@v2
               with:
                   name: 'pr-${{github.run_id}}'
