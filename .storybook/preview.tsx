@@ -9,6 +9,8 @@ global.___loader = {
     enqueue: () => {},
     hovering: () => {},
 }
+
+const lol = 'lol'
 // This global variable prevents the "__BASE_PATH__ is not defined" error inside Storybook.
 global.__BASE_PATH__ = '/'
 // Navigating through a gatsby app using gatsby-link or any other gatsby component will use the `___navigate` method.
