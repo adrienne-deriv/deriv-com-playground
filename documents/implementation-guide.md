@@ -8,7 +8,7 @@
 -   [Mobile responsive](#mobile-responsive)asdasdasd
 -   [CSS responsive function](#css-responsive-function)asdasd
 -   [Create new page](#create-new-page)asdasdasd
-asdasd
+asdasdasd
 ## Styled Componentasdasd
 asdasdsadasd
 To use a styled component you can follow this step:asdasdasdasdasd
