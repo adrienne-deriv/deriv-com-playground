@@ -17,7 +17,7 @@ window.___navigate = (pathname) => {
     action('NavigateTo:')(pathname)
 }
 
-const lmao = 'lmao'
+const lmao = 'lmaxo'
 
 // Global decorator to apply the styles to all stories
 export const decorators = [
