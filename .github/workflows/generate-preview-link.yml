@@ -50,45 +50,10 @@ jobs:
     
                   if [ $response != "200" ]; then
                       echo "User is not a member of binary-com organization."
-                      echo "result=false" > $GITHUB_OUTPUT
+                      exit 1
                   else
                       echo "User is a member of binary-com organization."
-                      echo "result=true" > $GITHUB_OUTPUT
                   fi
-                
-            - name: Check assignee organization
-              if: ${{ steps.is_organization_member.outputs.result == 'false' }}
-              run: |
-                  echo "User does not belong to binary-com organization."
-                  exit 1
-
-            # - name: 'Update preview link build status'
-            #   id: update_preview_url
-            #   uses: actions/github-script@v3
-            #   with:
-            #       github-token: ${{ github.token }}
-            #       script: |
-            #           var fs = require('fs');
-            #           var issue_number = Number(fs.readFileSync('./NR'));
-                                            
-            #           const preview_url = `https://${{github.event.workflow_run.head_branch}}.deriv-com-preview-links.pages.dev`
-            #           const comment = [
-            #               `**Preview Link**: ${preview_url}`,
-            #               '| Name | Result |',
-            #               '| :--- | :------ |',
-            #               `| **Build status**  | Building ⏳ |`,
-            #               `| **Preview URL**  | [Visit Preview](${preview_url}) |`,
-            #               ''
-            #             ].join('\n')
-            #           core.setOutput("comment", comment);
-            #           core.setOutput("issue_number", issue_number)
-
-            # - name: Post Cloudflare Pages Preview comment
-            #   uses: marocchino/sticky-pull-request-comment@v2
-            #   with:
-            #       header: Cloudflare Pages Preview Comment
-            #       number: ${{steps.update_preview_url.outputs.issue_number}}
-            #       message: ${{steps.update_preview_url.outputs.comment}}
 
             - name: Checkout to repo
               uses: actions/checkout@v3
@@ -166,10 +131,15 @@ jobs:
                         ].join('\n')
                       core.setOutput("comment", comment);
 
+            - name: Retrieve PR information
+              id: pr_information
+              run: |
+                  echo "issue_number=$(cat ./NR)" > $GITHUB_OUTPUT
+
             - name: Post Cloudflare Pages Preview comment
               uses: marocchino/sticky-pull-request-comment@v2
               with:
                   header: Cloudflare Pages Preview Comment
-                  number: ${{steps.update_preview_url.outputs.issue_number}}
+                  number: ${{steps.pr_information.outputs.issue_number}}
                   message: ${{steps.generate_preview_url.outputs.comment}}
                   recreate: true
