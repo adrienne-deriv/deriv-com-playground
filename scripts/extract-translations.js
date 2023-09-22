@@ -9,7 +9,7 @@ const glob = require('glob')
 const translated_keys = require('../src/translations/ach.json')
 const DISABLE_TRANSLATION = 'disable-translation'
 
-const x = 1
+const x = 12
 
 /*
 (_t_)                     = the capturing group for prefix "_t_"
