@@ -56,6 +56,8 @@ const old_find_keys = (file) => {
     return keys;
 }
 
+// asdasd
+
 const new_find_keys = (file) => {
     const keys = []
     let result = new_i18n_marker.exec(file)
