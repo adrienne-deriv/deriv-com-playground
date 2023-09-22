@@ -37,7 +37,7 @@ jobs:
                   name: "pr-${{ github.event.workflow_run.id }}"
 
             - name: Retrieve assignee information
-              id: is_organization_member
+              id: pr_information
               run: |
                   echo "Verifying user's organization..."
                   user=$(cat ./USERNAME)
@@ -53,6 +53,7 @@ jobs:
                       exit 1
                   else
                       echo "User is a member of binary-com organization."
+                      echo "issue_number=$(cat ./NR)" > $GITHUB_OUTPUT
                   fi
 
             - name: Checkout to repo
@@ -130,11 +131,6 @@ jobs:
                           ''
                         ].join('\n')
                       core.setOutput("comment", comment);
-
-            - name: Retrieve PR information
-              id: pr_information
-              run: |
-                  echo "issue_number=$(cat ./NR)" > $GITHUB_OUTPUT
 
             - name: Post Cloudflare Pages Preview comment
               uses: marocchino/sticky-pull-request-comment@v2
