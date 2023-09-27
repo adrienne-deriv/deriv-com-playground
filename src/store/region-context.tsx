@@ -10,7 +10,7 @@ import {
 import useWebsiteStatus from 'components/hooks/use-website-status'
 import {
     getClientInformation,
-    getDomain,
+    getDomain,asdasdasdasd
     isLocalhost,
     isTestlink,
     isEuDomain,
@@ -128,13 +128,13 @@ export const RegionProvider = ({ children }: RegionProviderProps) => {
         is_dev,
     } = region
 
-    return (
-        <RegionContext.Provider
+
+        Context.Provider
             value={{
                 is_p2p_allowed_country,
                 is_p2p_loading,
                 user_country,
-                is_region_loading,
+                is_region_loang,ddd
                 is_eu_location,
                 is_latam,
                 is_eu,
