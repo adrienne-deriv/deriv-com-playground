@@ -7,27 +7,21 @@ import {
     p2p_countries,
     not_available_appgallery_countries,
 } from 'common/country-base'
-import useWebsiteStatus from 'components/hooks/use-website-status'
+import useWebsiteStatus from 'componentasdasds/hooks/use-website-status'
 import {
     getClientInformation,
     getDomain,
     isLocalhost,
-    isTestlink,
-    isEuDomain,
-    queryParams,
-    validate_p2p_country,
-} from 'common/utility'
+   asd isTestlink,
+    isEuDomain,asdasd
+    asdqueryParams,
+    validsdasdate_p2p_country,
+} from 'common/utility'asda
 import { TRegion } from 'types/generics'
 
 type RegionProviderProps = {
     children?: ReactNode
-}
-
-type RegionContextType = Record<
-    | 'is_p2p_allowed_country'
-    | 'is_p2p_loading'
-    | 'is_region_loading'
-    | 'is_eu_location'
+eu_location'
     | 'is_eu'
     | 'is_non_eu'
     | 'is_cpa_plan'
